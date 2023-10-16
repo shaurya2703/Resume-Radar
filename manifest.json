@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "Resume Radar",
+    "version": "1.0",
+    "description": "Match job descriptions with my resume.",
+    "permissions": ["activeTab"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "images/icon1.png",
+        "48": "images/icon1.png",
+        "128": "images/icon1.png"
+      }
+    },
+    "icons": {
+      "16": "images/icon1.png",
+      "48": "images/icon1.png",
+      "128": "images/icon1.png"
+    }
+  }

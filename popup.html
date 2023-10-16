@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Job Matcher</h2>
+    <div class="file-upload">
+      <label for="resumeUpload" class="upload-label">
+        Choose a resume
+      </label>
+      <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx">
+      <span id="fileName">No file chosen</span>
+    </div>
+    <button id="checkMatch">Check Match</button>
+    <div id="matchResult"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
