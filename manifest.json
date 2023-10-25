@@ -5,6 +5,7 @@
     "description": "Match job descriptions with my resume.",
     "permissions": [
       "activeTab",
+      "tabs",
       "storage"
     ],
     "background": {

@@ -1,19 +1,27 @@
-// content.js
-
-// Function to extract job details from the greenhouse.io job post
 function extractJobDetails() {
-    const jobTitle = document.querySelector(".app-title").textContent;
-    const jobDescription = document.querySelector(".description").innerHTML;
-    const jobLocation = document.querySelector(".location").textContent;
-
-    return {
-        title: jobTitle,
-        description: jobDescription,
-        location: jobLocation
-    };
+    let textContent = "";
+    
+    // Generic extraction from page's paragraphs
+    const paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach(p => {
+        textContent += p.innerText + "\n";
+    });
+    console.log("Job details extracted from the page:", textContent);
+    // Additional specific extraction can be added based on unique website structures
+    
+    return textContent;
 }
-
-// You can now use this extracted data as needed, e.g., send to your extension's background page or popup
+console.log("Content script loaded.");
 const jobDetails = extractJobDetails();
-console.log(jobDetails);  // for debugging purposes
-chrome.runtime.sendMessgae(jobDetails)
+
+// Send extracted details to background script or popup when requested
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("Message received in the content script : ",request.action)
+    if (request.action === "getJobDetails") {
+        console.log("Inside content.js >> Received request to send job details")
+        console.log(sender.tab ?
+            "from a content script:" + sender.tab.url :
+            "from the extension");
+        sendResponse({ data: jobDetails });
+    }
+});

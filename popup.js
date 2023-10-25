@@ -20,10 +20,21 @@ document.getElementById('checkMatch').addEventListener('click', function() {
       return;
   }
 
+  chrome.runtime.sendMessage({action: "getJobDetails"}, function(response) {
+    if (response && response.status === "success") {
+        const jobDetailsFromBackground = response.data;
+        console.log("Received job details from background:", jobDetailsFromBackground);
+        // Handle the job details here or do whatever you need
+    } else {
+        console.error("Failed to get job details:", response.message);
+    }
+
   // For now, just generate a random match percentage between 50% to 100%
   let dummyMatchPercentage = Math.floor(Math.random() * 51) + 50;  // Generates a random number between 50 and 100
 
   document.getElementById('matchResult').innerText = `Match: ${dummyMatchPercentage}%`;
+});
+
 });
 
 
