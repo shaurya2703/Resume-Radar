@@ -15,9 +15,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 return;
             }
                 if (response && response.data) {
+                    console.log("Got Response from content script in background js")
                     jobDetails = response.data;
                     sendResponse({status: "success", data: jobDetails});
                 } else {
+                    console.log("No data received from content script in background js")
                     sendResponse({status: "error", message: "Failed to retrieve job details."});
                 }
             });
@@ -27,5 +29,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     // Other message handlers can be added as needed
 });
-
-// You can add other functionalities or event listeners as your extension expands

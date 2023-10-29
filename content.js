@@ -1,15 +1,13 @@
 function extractJobDetails() {
-    let textContent = "";
-    
-    // Generic extraction from page's paragraphs
-    const paragraphs = document.querySelectorAll('p');
-    paragraphs.forEach(p => {
-        textContent += p.innerText + "\n";
+    const lists = document.querySelectorAll('ol, ul');
+    const extractedData = [];
+
+    lists.forEach(list => {
+        let items = Array.from(list.querySelectorAll('li')).map(li => li.textContent);
+        extractedData.push(items);
     });
-    console.log("Job details extracted from the page:", textContent);
-    // Additional specific extraction can be added based on unique website structures
-    
-    return textContent;
+
+    return extractedData;
 }
 console.log("Content script loaded.");
 const jobDetails = extractJobDetails();
