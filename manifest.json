@@ -30,5 +30,11 @@
           "js": ["content.js"],
           "run_at": "document_idle"
       }
-  ]
-  }
+  ],
+  "web_accessible_resources": [
+    {
+        "resources": ["pdf.js-master/src/pdf.worker.js", "pdf.js-master/web/*"],
+        "matches": ["<all_urls>"]
+    }
+]
+}
